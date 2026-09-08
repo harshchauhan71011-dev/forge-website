@@ -1,0 +1,577 @@
+<title>Forge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#14171c;
+    --ground-raised:#1b2028;
+    --ground-line: rgba(232,230,225,0.09);
+    --iron:#e9e6e0;
+    --steel:#93a0b0;
+    --steel-dim:#5f6b78;
+    --ember:#dba447;
+    --ember-soft: rgba(219,164,71,0.14);
+    --temper:#5b9bd6;
+    --temper-soft: rgba(91,155,214,0.14);
+    --font-display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+    --font-body: 'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--iron);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--ember); color:#181205; }
+
+  a{ color:inherit; }
+  img{max-width:100%;}
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding-inline:32px;
+  }
+  .prose{ max-width:640px; }
+
+  h1,h2,h3{
+    font-family:var(--font-display);
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    text-wrap:balance;
+    margin:0;
+    color:var(--iron);
+  }
+
+  .eyebrov{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ember);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--ember);
+    display:inline-block;
+  }
+
+  p{ color:var(--steel); margin:0; }
+
+  .btn{
+    font-family:var(--font-mono);
+    font-size:0.82rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 22px;
+    border-radius:2px;
+    transition:transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-primary{
+    background:var(--ember);
+    color:#181205;
+    font-weight:600;
+    border:1px solid var(--ember);
+  }
+  .btn-primary:hover{ transform:translateY(-1px); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--iron);
+    border:1px solid var(--ground-line);
+  }
+  .btn-ghost:hover{ border-color:var(--steel-dim); }
+  .btn:focus-visible{ outline:2px solid var(--temper); outline-offset:2px; }
+
+  /* ---------- header ---------- */
+  header{
+    border-bottom:1px solid var(--ground-line);
+    position:relative;
+    z-index:5;
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-block:20px;
+  }
+  .mark{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+  }
+  .mark img{ width:36px; height:36px; flex:none; display:block; }
+  .mark span{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:1.35rem;
+    letter-spacing:0.04em;
+    color:var(--iron);
+  }
+  nav.links{
+    display:flex;
+    align-items:center;
+    gap:34px;
+  }
+  nav.links a{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--steel);
+  }
+  nav.links a:hover{ color:var(--iron); }
+  .nav-cta{ display:flex; align-items:center; gap:28px; }
+  .burger{ display:none; }
+  #nav-toggle{ display:none; }
+
+  @media (max-width:800px){
+    nav.links{
+      position:absolute;
+      top:100%; left:0; right:0;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0;
+      background:var(--ground-raised);
+      border-bottom:1px solid var(--ground-line);
+      max-height:0;
+      overflow:hidden;
+      transition:max-height 0.25s ease;
+    }
+    nav.links a{
+      padding:16px 32px;
+      width:100%;
+      border-top:1px solid var(--ground-line);
+    }
+    #nav-toggle:checked ~ nav.links{ max-height:260px; }
+    .burger{
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+      width:26px;
+      cursor:pointer;
+    }
+    .burger span{ height:2px; background:var(--iron); display:block; }
+    .nav-cta .btn-ghost{ display:none; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding-block:96px 76px;
+    background-image:
+      repeating-linear-gradient(135deg, rgba(233,230,224,0.035) 0px, rgba(233,230,224,0.035) 1px, transparent 1px, transparent 7px);
+  }
+  .hero::before, .hero::after{
+    content:"";
+    position:absolute;
+    width:520px; height:520px;
+    border-radius:50%;
+    filter:blur(90px);
+    pointer-events:none;
+    animation:glow 7s ease-in-out infinite alternate;
+  }
+  .hero::before{
+    background:var(--ember-soft);
+    top:-220px; left:-160px;
+  }
+  .hero::after{
+    background:var(--temper-soft);
+    bottom:-260px; right:-180px;
+    animation-delay:1.5s;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero::before, .hero::after{ animation:none; }
+  }
+  @keyframes glow{
+    from{ opacity:0.55; transform:scale(1); }
+    to{ opacity:0.95; transform:scale(1.08); }
+  }
+  .hero-inner{ position:relative; z-index:1; max-width:760px; }
+  .hero h1{
+    font-size:clamp(2.4rem, 5.4vw, 4.1rem);
+    line-height:0.98;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--ember);
+  }
+  .hero p.lede{
+    font-size:1.08rem;
+    max-width:560px;
+    margin-bottom:34px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:52px; }
+
+  .spec-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .spec-chip{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--steel);
+    border:1px solid var(--ground-line);
+    padding:8px 14px;
+    border-radius:2px;
+    background:var(--ground-raised);
+  }
+
+  /* ---------- section shell ---------- */
+  section{ padding-block:88px; border-bottom:1px solid var(--ground-line); }
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-head h2{ font-size:clamp(1.7rem, 3.4vw, 2.5rem); margin-bottom:16px; }
+
+  /* ---------- process ---------- */
+  .process-list{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--ground-line);
+    border:1px solid var(--ground-line);
+  }
+  .process-item{
+    background:var(--ground);
+    padding:30px 26px 34px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .process-index{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    color:var(--temper);
+    letter-spacing:0.04em;
+  }
+  .process-item h3{
+    font-size:1.35rem;
+    letter-spacing:0.02em;
+  }
+  .process-item p{ font-size:0.92rem; }
+  @media (max-width:900px){
+    .process-list{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:560px){
+    .process-list{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- temper divider ---------- */
+  .temper-divider{ padding-block:56px; border-bottom:1px solid var(--ground-line); }
+  .temper-bar{
+    height:10px;
+    width:100%;
+    border-radius:2px;
+    background:linear-gradient(90deg,
+      #d9c17a 0%,
+      #d9a441 16%,
+      #c8793f 32%,
+      #b85b45 46%,
+      #8a5a86 62%,
+      #5b7fb0 78%,
+      #4f7fb8 100%);
+    margin-bottom:14px;
+  }
+  .temper-caption{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    color:var(--steel-dim);
+    max-width:640px;
+  }
+  .temper-caption strong{ color:var(--steel); font-weight:500; }
+
+  /* ---------- capabilities ---------- */
+  .cap-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--ground-line);
+    border:1px solid var(--ground-line);
+  }
+  .cap-item{
+    background:var(--ground);
+    padding:28px 26px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .cap-index{
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    color:var(--ember);
+  }
+  .cap-item h3{
+    font-size:1.12rem;
+    letter-spacing:0.01em;
+    text-transform:none;
+    font-weight:700;
+  }
+  .cap-item p{ font-size:0.9rem; }
+  @media (max-width:900px){ .cap-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .cap-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- founders ---------- */
+  .founder-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+  .founder-card{
+    background:var(--ground-raised);
+    border:1px solid var(--ground-line);
+    padding:30px 28px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .founder-initial{
+    width:44px; height:44px;
+    border:1px solid var(--temper);
+    color:var(--temper);
+    font-family:var(--font-mono);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.95rem;
+  }
+  .founder-card h3{
+    font-size:1.3rem;
+    text-transform:none;
+    letter-spacing:0;
+  }
+  .founder-role{
+    font-family:var(--font-mono);
+    font-size:0.74rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ember);
+  }
+  .founder-card p{ font-size:0.94rem; }
+  @media (max-width:700px){ .founder-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- contact ---------- */
+  .contact-section{ border-bottom:none; }
+  .contact-inner{
+    background:var(--ground-raised);
+    border:1px solid var(--ground-line);
+    padding:56px 48px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:32px;
+    flex-wrap:wrap;
+  }
+  .contact-inner h2{ font-size:clamp(1.6rem,3.2vw,2.3rem); margin-bottom:10px; }
+  .contact-inner p{ max-width:420px; }
+  .contact-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+
+  footer{
+    padding:32px 0 48px;
+  }
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.04em;
+    color:var(--steel-dim);
+    text-transform:uppercase;
+  }
+</style>
+
+<header>
+  <div class="wrap nav-row">
+    <a class="mark" href="#top">
+      <img src="logo.jpg" alt="Forge logo" width="36" height="36">
+      <span>FORGE</span>
+    </a>
+    <input type="checkbox" id="nav-toggle">
+    <label class="burger" for="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </label>
+    <nav class="links">
+      <a href="#process">Process</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#founders">Founders</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="#contact">Start a project</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="border-bottom:1px solid var(--ground-line);">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">Web development studio &middot; Est. 2026</p>
+      <h1>We forge websites<br>the way a smith<br>forges <em>steel</em>.</h1>
+      <p class="lede">Heated with real strategy, hammered into shape through fast, visible iteration, tempered until it performs under load, then quenched — shipped — the moment it can hold weight.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#contact">Start a project</a>
+        <a class="btn btn-ghost" href="#process">See how we build</a>
+      </div>
+      <div class="spec-row">
+        <span class="spec-chip">Strategy</span>
+        <span class="spec-chip">Design</span>
+        <span class="spec-chip">Engineering</span>
+        <span class="spec-chip">Launch support</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How we build</p>
+        <h2>Four stages, same as any forge.</h2>
+        <p>A blacksmith doesn't skip steps to save time — skipping a step is how steel cracks later. We run every build through the same four stages, in order.</p>
+      </div>
+      <div class="process-list">
+        <div class="process-item">
+          <span class="process-index">01 / Heat</span>
+          <h3>Discovery</h3>
+          <p>We find out what the site actually has to do, for whom, and what it costs you if it fails — before a single pixel gets placed.</p>
+        </div>
+        <div class="process-item">
+          <span class="process-index">02 / Hammer</span>
+          <h3>Build</h3>
+          <p>The site takes shape in fast, visible passes. You see real structure early, not a locked comp six weeks in.</p>
+        </div>
+        <div class="process-item">
+          <span class="process-index">03 / Temper</span>
+          <h3>Refine</h3>
+          <p>Hardened steel gets reheated slightly so it won't shatter under stress. We do the same: performance, copy, and edge cases, worked over until they hold.</p>
+        </div>
+        <div class="process-item">
+          <span class="process-index">04 / Quench</span>
+          <h3>Launch</h3>
+          <p>The rapid cool that locks the hardness in. We ship, watch it under real traffic, and stay on for the first round of fixes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="temper-divider">
+    <div class="wrap">
+      <div class="temper-bar" role="img" aria-label="Gradient from straw gold to steel blue, representing steel temper colors from 200 to 300 degrees Celsius"></div>
+      <p class="temper-caption"><strong>Temper colors</strong> — the visible readout of heat in steel, from pale straw near 200&deg;C to deep blue near 300&deg;C. Blacksmiths read them to know exactly when to stop. We borrowed the palette; you're welcome to borrow the discipline.</p>
+    </div>
+  </div>
+
+  <section id="capabilities">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What we build</p>
+        <h2>All sorts of websites, treated like precision work.</h2>
+        <p>Whatever the site needs to do, it gets the same four-stage process above — not a template with your logo swapped in.</p>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-item">
+          <span class="cap-index">01</span>
+          <h3>Marketing &amp; business sites</h3>
+          <p>The front door for a company that needs to be taken seriously, fast.</p>
+        </div>
+        <div class="cap-item">
+          <span class="cap-index">02</span>
+          <h3>Online stores</h3>
+          <p>Storefronts built to convert a visitor into a checkout, not just display a catalogue.</p>
+        </div>
+        <div class="cap-item">
+          <span class="cap-index">03</span>
+          <h3>Web apps &amp; tools</h3>
+          <p>Logins, dashboards, and anything that needs to do more than render text.</p>
+        </div>
+        <div class="cap-item">
+          <span class="cap-index">04</span>
+          <h3>Landing pages &amp; campaigns</h3>
+          <p>One page, built to do one job well, for a launch or a push you can't miss.</p>
+        </div>
+        <div class="cap-item">
+          <span class="cap-index">05</span>
+          <h3>Redesigns &amp; migrations</h3>
+          <p>Moving an old site onto something that doesn't fight you every time you update it.</p>
+        </div>
+        <div class="cap-item">
+          <span class="cap-index">06</span>
+          <h3>Care &amp; maintenance</h3>
+          <p>Updates, fixes, and monitoring after launch, so the site stays your problem to grow — not to babysit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="founders">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Who's forging</p>
+        <h2>Two founders, one shop.</h2>
+      </div>
+      <div class="founder-grid">
+        <div class="founder-card">
+          <span class="founder-initial">EK</span>
+          <div>
+            <h3>Eshu Koli</h3>
+            <p class="founder-role">Co-Founder</p>
+          </div>
+          <p>Previously founded Eshway, a platform connecting freelancers with clients, out of the IIT Bombay startup ecosystem starting in 2023. Brings the product and technical side of the shop.</p>
+        </div>
+        <div class="founder-card">
+          <span class="founder-initial">HC</span>
+          <div>
+            <h3>Harsh Chauhan</h3>
+            <p class="founder-role">Co-Founder</p>
+          </div>
+          <p>Leads client strategy and delivery — making sure every build actually solves the problem it was hired to solve, not just the one that was easiest to describe in a brief.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="wrap">
+      <div class="contact-inner">
+        <div>
+          <p class="eyebrow" style="margin-bottom:10px;">Start a project</p>
+          <h2>Tell us what needs building.</h2>
+          <p>Send a line about the site, the deadline, and what it needs to do. We'll reply with next steps, not a form to fill out.</p>
+        </div>
+        <div class="contact-ctas">
+          <a class="btn btn-primary" href="mailto:harshchauhan.71011@gmail.com?subject=New%20project%20enquiry%20-%20Forge">Email us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>Forge &middot; Est. 2026</span>
+    <span>Founded by Eshu Koli &amp; Harsh Chauhan</span>
+  </div>
+</footer>
