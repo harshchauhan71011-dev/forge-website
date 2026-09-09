@@ -359,7 +359,47 @@
   }
   .temper-caption strong{ color:var(--steel); font-weight:500; }
 
-  /* ---------- capabilities ---------- */
+  /* ---------- vision ---------- */
+.vision-section{
+position:relative;
+overflow:hidden;
+border-bottom:1px solid var(--ground-line);
+background:#05060a;
+}
+.vision-media{
+position:relative;
+width:100%;
+height:clamp(420px, 58vw, 620px);
+}
+.vision-media img{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+.vision-media::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(180deg, rgba(5,6,10,0) 38%, rgba(5,6,10,0.94) 100%);
+}
+.vision-copy{
+position:absolute;
+left:0; right:0; bottom:0;
+padding-bottom:44px;
+}
+.vision-copy .eyebrow{ color:#e8a94c; }
+.vision-copy .eyebrow::before{ background:#e8a94c; }
+.vision-copy h2{ color:#f5f2ea; margin-bottom:14px; font-size:clamp(1.6rem, 3.2vw, 2.3rem); }
+.vision-copy p{ color:#b9c0cb; max-width:560px; }
+@media (max-width:700px){
+.vision-media{ height:520px; }
+.vision-copy{ padding-bottom:28px; }
+}
+
+/* ---------- capabilities ---------- */
   .cap-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -559,7 +599,18 @@
     </div>
   </div>
 
-  <section id="capabilities">
+  <section class="vision-section" aria-labelledby="vision-heading">
+<div class="vision-media">
+<img src="image.jpg" alt="Surreal artwork of two profiles in warm and cool light merging around a glowing third eye, echoing Forge’s heat-and-temper process" loading="lazy" width="1536" height="1024">
+</div>
+<div class="vision-copy wrap">
+<p class="eyebrow">How we see it</p>
+<h2 id="vision-heading">Heat and temper, focused on one point.</h2>
+<p>Every build pulls two forces the way steel does — raw heat pushing forward, temper pulling it back under control. We work in that middle distance on purpose: fast enough to ship, careful enough to hold.</p>
+</div>
+</section>
+
+<section id="capabilities">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">What we build</p>
