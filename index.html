@@ -1,7 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Forge</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+  (function(){
+    try{
+      var saved = localStorage.getItem('forge-theme');
+      var theme = (saved === 'light' || saved === 'dark') ? saved : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    }catch(e){}
+  })();
+</script>
 <style>
   :root{
     --ground:#14171c;
@@ -17,6 +31,23 @@
     --font-display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
     --font-body: 'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif;
     --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+    --btn-primary-ink:#181205;
+    --glow-opacity:1;
+  }
+
+  :root[data-theme="light"]{
+    --ground:#f5f3ee;
+    --ground-raised:#ffffff;
+    --ground-line: rgba(20,23,28,0.10);
+    --iron:#181b20;
+    --steel:#4c5560;
+    --steel-dim:#7c8792;
+    --ember:#a8681c;
+    --ember-soft: rgba(168,104,28,0.10);
+    --temper:#2f6fb0;
+    --temper-soft: rgba(47,111,176,0.09);
+    --btn-primary-ink:#fff8ec;
+    --glow-opacity:0.35;
   }
 
   *{box-sizing:border-box;}
@@ -28,8 +59,9 @@
     font-family:var(--font-body);
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    transition:background 0.2s ease, color 0.2s ease;
   }
-  ::selection{ background:var(--ember); color:#181205; }
+  ::selection{ background:var(--ember); color:var(--btn-primary-ink); }
 
   a{ color:inherit; }
   img{max-width:100%;}
@@ -51,7 +83,7 @@
     color:var(--iron);
   }
 
-  .eyebrov{
+  .eyebrow{
     font-family:var(--font-mono);
     font-size:0.72rem;
     letter-spacing:0.16em;
@@ -86,7 +118,7 @@
   }
   .btn-primary{
     background:var(--ember);
-    color:#181205;
+    color:var(--btn-primary-ink);
     font-weight:600;
     border:1px solid var(--ember);
   }
@@ -99,11 +131,35 @@
   .btn-ghost:hover{ border-color:var(--steel-dim); }
   .btn:focus-visible{ outline:2px solid var(--temper); outline-offset:2px; }
 
+  /* ---------- theme toggle ---------- */
+  .theme-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:38px; height:38px;
+    flex:none;
+    border:1px solid var(--ground-line);
+    background:var(--ground-raised);
+    border-radius:2px;
+    cursor:pointer;
+    color:var(--iron);
+    transition:border-color 0.15s ease, transform 0.15s ease;
+  }
+  .theme-toggle:hover{ border-color:var(--steel-dim); }
+  .theme-toggle:active{ transform:translateY(1px); }
+  .theme-toggle:focus-visible{ outline:2px solid var(--temper); outline-offset:2px; }
+  .theme-toggle svg{ width:17px; height:17px; display:block; }
+  .theme-toggle .icon-moon{ display:none; }
+  :root[data-theme="light"] .theme-toggle .icon-sun{ display:none; }
+  :root[data-theme="light"] .theme-toggle .icon-moon{ display:block; }
+
   /* ---------- header ---------- */
   header{
     border-bottom:1px solid var(--ground-line);
     position:relative;
     z-index:5;
+    background:var(--ground);
+    transition:background 0.2s ease, border-color 0.2s ease;
   }
   .nav-row{
     display:flex;
@@ -188,6 +244,7 @@
     border-radius:50%;
     filter:blur(90px);
     pointer-events:none;
+    opacity:var(--glow-opacity);
     animation:glow 7s ease-in-out infinite alternate;
   }
   .hero::before{
@@ -203,8 +260,8 @@
     .hero::before, .hero::after{ animation:none; }
   }
   @keyframes glow{
-    from{ opacity:0.55; transform:scale(1); }
-    to{ opacity:0.95; transform:scale(1.08); }
+    from{ opacity:calc(var(--glow-opacity) * 0.55); transform:scale(1); }
+    to{ opacity:calc(var(--glow-opacity) * 0.95); transform:scale(1.08); }
   }
   .hero-inner{ position:relative; z-index:1; max-width:760px; }
   .hero h1{
@@ -385,7 +442,19 @@
   }
   .contact-inner h2{ font-size:clamp(1.6rem,3.2vw,2.3rem); margin-bottom:10px; }
   .contact-inner p{ max-width:420px; }
-  .contact-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+  .contact-ctas{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+  .contact-email{
+    font-family:var(--font-mono);
+    font-size:0.82rem;
+    color:var(--steel);
+  }
+  .contact-email a{
+    color:var(--iron);
+    text-decoration:underline;
+    text-decoration-color:var(--ground-line);
+    text-underline-offset:3px;
+  }
+  .contact-email a:hover{ text-decoration-color:var(--steel-dim); }
 
   footer{
     padding:32px 0 48px;
@@ -404,6 +473,9 @@
   }
 </style>
 
+</head>
+<body>
+
 <header>
   <div class="wrap nav-row">
     <a class="mark" href="#top"><img src="data:image/png;base64,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" alt="Forge logo" width="36" height="36">
@@ -420,6 +492,10 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="nav-cta">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme" title="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
       <a class="btn btn-ghost" href="#contact">Start a project</a>
     </div>
   </div>
@@ -428,7 +504,7 @@
 <main id="top">
   <section class="hero" style="border-bottom:1px solid var(--ground-line);">
     <div class="wrap hero-inner">
-      <p class="eyebrow">Web development studio &middot; Est. 2026</p>
+      <p class="eyebrow">Web development studio</p>
       <h1>We forge websites<br>the way a smith<br>forges <em>steel</em>.</h1>
       <p class="lede">Heated with real strategy, hammered into shape through fast, visible iteration, tempered until it performs under load, then quenched — shipped — the moment it can hold weight.</p>
       <div class="hero-ctas">
@@ -562,6 +638,7 @@
         </div>
         <div class="contact-ctas">
           <a class="btn btn-primary" href="mailto:harshchauhan.71011@gmail.com?subject=New%20project%20enquiry%20-%20Forge">Email us</a>
+          <span class="contact-email">or write to <a href="mailto:harshchauhan.71011@gmail.com?subject=New%20project%20enquiry%20-%20Forge">harshchauhan.71011@gmail.com</a></span>
         </div>
       </div>
     </div>
@@ -570,7 +647,22 @@
 
 <footer>
   <div class="wrap footer-row">
-    <span>Forge &middot; Est. 2026</span>
+    <span>Forge</span>
     <span>Founded by Eshu Koli &amp; Harsh Chauhan</span>
   </div>
 </footer>
+
+<script>
+  (function(){
+    var btn = document.getElementById('theme-toggle');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      var next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      try{ localStorage.setItem('forge-theme', next); }catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>
