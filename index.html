@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#14171c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f5f3ee" media="(prefers-color-scheme: light)">
 <title>Forge — Web Development Studio for Startups &amp; Businesses</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -521,6 +523,46 @@ padding-bottom:44px;
     color:var(--steel-dim);
     text-transform:uppercase;
   }
+
+.faq-list{
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  background:var(--ground-line);
+  border:1px solid var(--ground-line);
+}
+.faq-item{
+  background:var(--ground-raised);
+  padding:22px 28px;
+}
+.faq-item summary{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:1.05rem;
+  color:var(--iron);
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+}
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary::after{
+  content:"+";
+  color:var(--ember);
+  font-family:var(--font-mono);
+  font-size:1.2rem;
+  flex-shrink:0;
+}
+.faq-item[open] summary::after{ content:"\2013"; }
+.faq-item p{
+  margin-top:14px;
+  color:var(--steel);
+  font-family:var(--font-body);
+  line-height:1.6;
+  max-width:640px;
+}
 </style>
 
 <meta name="description" content="A two-founder web development studio building marketing sites, online stores, web apps, and landing pages — precision-built and fast to launch.">
@@ -566,6 +608,108 @@ padding-bottom:44px;
     {
       "@type": "Person",
       "name": "Harsh Chauhan"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Marketing & business sites",
+          "description": "Front door for a company that needs to be taken seriously, fast."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Online stores",
+          "description": "Storefronts built to convert a visitor into a checkout, not just display a catalogue."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Web apps & tools",
+          "description": "Logins, dashboards, and anything that needs to do more than render text."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Landing pages & campaigns",
+          "description": "One page, built to do one job well, for a launch or a push you can't miss."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Redesigns & migrations",
+          "description": "Moving an old site onto something that doesn't fight you every time you update it."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Care & maintenance",
+          "description": "Updates, fixes, and monitoring after launch, so the site stays your problem to grow — not to babysit."
+        }
+      }
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does a website cost with Forge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every project gets a quote after we understand the scope — a landing page and a full storefront don't belong on the same price tag. Send us what you're building and we'll reply with a real number, not a range pulled from a rate card."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a typical project take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most marketing sites and landing pages ship in two to four weeks. Stores, web apps, and larger rebuilds run longer — we'll give you a real timeline once we know what needs building."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you only build marketing sites, or also stores and web apps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Marketing sites, online stores, web apps, landing pages, redesigns, and the maintenance after — the same four-stage process applies no matter what's on the anvil."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens after the site launches?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Launch isn't where we disappear. Care & maintenance covers updates, fixes, and monitoring, so the site stays your problem to grow, not to babysit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do you need from me to get started?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A line about the site, the deadline, and what it needs to do. We'll reply with next steps, not a form to fill out."
+      }
     }
   ]
 }
@@ -626,25 +770,25 @@ padding-bottom:44px;
       </div>
       <div class="process-list">
         <div class="process-item">
-          <img class="process-thumb" src="discovery.jpg" alt="Cracked volcanic rock glowing with a molten ember eye at its center" loading="lazy" width="600" height="600">
+          <picture><source srcset="discovery.webp" type="image/webp"><img class="process-thumb" src="discovery.jpg" alt="Cracked volcanic rock glowing with a molten ember eye at its center" loading="lazy" width="600" height="600"></picture>
 <span class="process-index">01 / Heat</span>
           <h3>Discovery</h3>
           <p>We find out what the site actually has to do, for whom, and what it costs you if it fails — before a single pixel gets placed.</p>
         </div>
         <div class="process-item">
-          <img class="process-thumb" src="build.jpg" alt="A hammer striking glowing steel on an anvil, sparks scattering into stars" loading="lazy" width="600" height="600">
+          <picture><source srcset="build.webp" type="image/webp"><img class="process-thumb" src="build.jpg" alt="A hammer striking glowing steel on an anvil, sparks scattering into stars" loading="lazy" width="600" height="600"></picture>
 <span class="process-index">02 / Hammer</span>
           <h3>Build</h3>
           <p>The site takes shape in fast, visible passes. You see real structure early, not a locked comp six weeks in.</p>
         </div>
         <div class="process-item">
-          <img class="process-thumb" src="refine.jpg" alt="A steel blade reflecting a watching eye across a temper-color gradient" loading="lazy" width="600" height="600">
+          <picture><source srcset="refine.webp" type="image/webp"><img class="process-thumb" src="refine.jpg" alt="A steel blade reflecting a watching eye across a temper-color gradient" loading="lazy" width="600" height="600"></picture>
 <span class="process-index">03 / Temper</span>
           <h3>Refine</h3>
           <p>Hardened steel gets reheated slightly so it won't shatter under stress. We do the same: performance, copy, and edge cases, worked over until they hold.</p>
         </div>
         <div class="process-item">
-          <img class="process-thumb" src="launch.jpg" alt="Glowing steel plunging into dark water beneath a starlit sky" loading="lazy" width="600" height="600">
+          <picture><source srcset="launch.webp" type="image/webp"><img class="process-thumb" src="launch.jpg" alt="Glowing steel plunging into dark water beneath a starlit sky" loading="lazy" width="600" height="600"></picture>
 <span class="process-index">04 / Quench</span>
           <h3>Launch</h3>
           <p>The rapid cool that locks the hardness in. We ship, watch it under real traffic, and stay on for the first round of fixes.</p>
@@ -662,7 +806,7 @@ padding-bottom:44px;
 
   <section class="vision-section" aria-labelledby="vision-heading">
 <div class="vision-media">
-<img src="image.jpg" alt="Surreal artwork of two profiles in warm and cool light merging around a glowing third eye, echoing Forge’s heat-and-temper process" loading="lazy" width="1536" height="1024">
+<picture><source srcset="image.webp" type="image/webp"><img src="image.jpg" alt="Surreal artwork of two profiles in warm and cool light merging around a glowing third eye, echoing Forge’s heat-and-temper process" loading="lazy" width="1536" height="1024"></picture>
 </div>
 <div class="vision-copy wrap">
 <p class="eyebrow">How we see it</p>
@@ -740,7 +884,38 @@ padding-bottom:44px;
     </div>
   </section>
 
-  <section id="contact" class="contact-section">
+  <section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Before you write in</p>
+      <h2>Questions we get asked.</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>How much does a website cost with Forge?</summary>
+        <p>Every project gets a quote after we understand the scope &mdash; a landing page and a full storefront don&rsquo;t belong on the same price tag. Send us what you&rsquo;re building and we&rsquo;ll reply with a real number, not a range pulled from a rate card.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How long does a typical project take?</summary>
+        <p>Most marketing sites and landing pages ship in two to four weeks. Stores, web apps, and larger rebuilds run longer &mdash; we&rsquo;ll give you a real timeline once we know what needs building.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do you only build marketing sites, or also stores and web apps?</summary>
+        <p>Marketing sites, online stores, web apps, landing pages, redesigns, and the maintenance after &mdash; the same four-stage process applies no matter what&rsquo;s on the anvil.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens after the site launches?</summary>
+        <p>Launch isn&rsquo;t where we disappear. Care &amp; maintenance covers updates, fixes, and monitoring, so the site stays your problem to grow, not to babysit.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What do you need from me to get started?</summary>
+        <p>A line about the site, the deadline, and what it needs to do. We&rsquo;ll reply with next steps, not a form to fill out.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
     <div class="wrap">
       <div class="contact-inner">
         <div>
