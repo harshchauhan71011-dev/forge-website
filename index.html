@@ -310,7 +310,16 @@
     background:var(--ground-line);
     border:1px solid var(--ground-line);
   }
-  .process-item{
+  .process-thumb{
+width:100%;
+aspect-ratio:1/1;
+object-fit:cover;
+display:block;
+border-radius:2px;
+border:1px solid var(--ground-line);
+}
+
+.process-item{
     background:var(--ground);
     padding:30px 26px 34px;
     display:flex;
@@ -569,22 +578,26 @@ padding-bottom:44px;
       </div>
       <div class="process-list">
         <div class="process-item">
-          <span class="process-index">01 / Heat</span>
+          <img class="process-thumb" src="discovery.jpg" alt="Cracked volcanic rock glowing with a molten ember eye at its center" loading="lazy" width="600" height="600">
+<span class="process-index">01 / Heat</span>
           <h3>Discovery</h3>
           <p>We find out what the site actually has to do, for whom, and what it costs you if it fails — before a single pixel gets placed.</p>
         </div>
         <div class="process-item">
-          <span class="process-index">02 / Hammer</span>
+          <img class="process-thumb" src="build.jpg" alt="A hammer striking glowing steel on an anvil, sparks scattering into stars" loading="lazy" width="600" height="600">
+<span class="process-index">02 / Hammer</span>
           <h3>Build</h3>
           <p>The site takes shape in fast, visible passes. You see real structure early, not a locked comp six weeks in.</p>
         </div>
         <div class="process-item">
-          <span class="process-index">03 / Temper</span>
+          <img class="process-thumb" src="refine.jpg" alt="A steel blade reflecting a watching eye across a temper-color gradient" loading="lazy" width="600" height="600">
+<span class="process-index">03 / Temper</span>
           <h3>Refine</h3>
           <p>Hardened steel gets reheated slightly so it won't shatter under stress. We do the same: performance, copy, and edge cases, worked over until they hold.</p>
         </div>
         <div class="process-item">
-          <span class="process-index">04 / Quench</span>
+          <img class="process-thumb" src="launch.jpg" alt="Glowing steel plunging into dark water beneath a starlit sky" loading="lazy" width="600" height="600">
+<span class="process-index">04 / Quench</span>
           <h3>Launch</h3>
           <p>The rapid cool that locks the hardness in. We ship, watch it under real traffic, and stay on for the first round of fixes.</p>
         </div>
