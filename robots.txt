@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://whynotforge.com/sitemap.xml
