@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#14171c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f5f3ee" media="(prefers-color-scheme: light)">
+<title>Contact — Forge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<script>
+  (function(){
+    try{
+      var saved = localStorage.getItem('forge-theme');
+      var theme = (saved === 'light' || saved === 'dark') ? saved : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    }catch(e){}
+  })();
+</script>
+<style>
+  :root{
+    --ground:#14171c;
+    --ground-raised:#1b2028;
+    --ground-line: rgba(232,230,225,0.09);
+    --iron:#e9e6e0;
+    --steel:#93a0b0;
+    --steel-dim:#5f6b78;
+    --ember:#dba447;
+    --ember-soft: rgba(219,164,71,0.14);
+    --temper:#5b9bd6;
+    --temper-soft: rgba(91,155,214,0.14);
+    --font-display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+    --font-body: 'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+    --btn-primary-ink:#181205;
+    --glow-opacity:1;
+  }
+
+  :root[data-theme="light"]{
+    --ground:#f5f3ee;
+    --ground-raised:#ffffff;
+    --ground-line: rgba(20,23,28,0.10);
+    --iron:#181b20;
+    --steel:#4c5560;
+    --steel-dim:#7c8792;
+    --ember:#a8681c;
+    --ember-soft: rgba(168,104,28,0.10);
+    --temper:#2f6fb0;
+    --temper-soft: rgba(47,111,176,0.09);
+    --btn-primary-ink:#fff8ec;
+    --glow-opacity:0.35;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--iron);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  ::selection{ background:var(--ember); color:var(--btn-primary-ink); }
+
+  a{ color:inherit; }
+  img{max-width:100%;}
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding-inline:32px;
+  }
+  .prose{ max-width:640px; }
+
+  h1,h2,h3{
+    font-family:var(--font-display);
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    text-wrap:balance;
+    margin:0;
+    color:var(--iron);
+  }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--ember);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--ember);
+    display:inline-block;
+  }
+
+  p{ color:var(--steel); margin:0; }
+
+  .btn{
+    font-family:var(--font-mono);
+    font-size:0.82rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 22px;
+    border-radius:2px;
+    transition:transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-primary{
+    background:var(--ember);
+    color:var(--btn-primary-ink);
+    font-weight:600;
+    border:1px solid var(--ember);
+  }
+  .btn-primary:hover{ transform:translateY(-1px); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--iron);
+    border:1px solid var(--ground-line);
+  }
+  .btn-ghost:hover{ border-color:var(--steel-dim); }
+  .btn:focus-visible{ outline:2px solid var(--temper); outline-offset:2px; }
+
+  /* ---------- theme toggle ---------- */
+  .theme-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:38px; height:38px;
+    flex:none;
+    border:1px solid var(--ground-line);
+    background:var(--ground-raised);
+    border-radius:2px;
+    cursor:pointer;
+    color:var(--iron);
+    transition:border-color 0.15s ease, transform 0.15s ease;
+  }
+  .theme-toggle:hover{ border-color:var(--steel-dim); }
+  .theme-toggle:active{ transform:translateY(1px); }
+  .theme-toggle:focus-visible{ outline:2px solid var(--temper); outline-offset:2px; }
+  .theme-toggle svg{ width:17px; height:17px; display:block; }
+  .theme-toggle .icon-moon{ display:none; }
+  :root[data-theme="light"] .theme-toggle .icon-sun{ display:none; }
+  :root[data-theme="light"] .theme-toggle .icon-moon{ display:block; }
+
+  /* ---------- header ---------- */
+  header{
+    border-bottom:1px solid var(--ground-line);
+    position:relative;
+    z-index:5;
+    background:var(--ground);
+    transition:background 0.2s ease, border-color 0.2s ease;
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-block:20px;
+  }
+  .mark{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+  }
+  .mark img{ width:36px; height:36px; flex:none; display:block; }
+  .mark span{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:1.35rem;
+    letter-spacing:0.04em;
+    color:var(--iron);
+  }
+  nav.links{
+    display:flex;
+    align-items:center;
+    gap:34px;
+  }
+  nav.links a{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--steel);
+  }
+  nav.links a:hover{ color:var(--iron); }
+  nav.links a[aria-current="page"]{ color:var(--iron); }
+  .nav-cta{ display:flex; align-items:center; gap:28px; }
+  .burger{ display:none; }
+  #nav-toggle{ display:none; }
+
+  @media (max-width:800px){
+    nav.links{
+      position:absolute;
+      top:100%; left:0; right:0;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0;
+      background:var(--ground-raised);
+      border-bottom:1px solid var(--ground-line);
+      max-height:0;
+      overflow:hidden;
+      transition:max-height 0.25s ease;
+    }
+    nav.links a{
+      padding:16px 32px;
+      width:100%;
+      border-top:1px solid var(--ground-line);
+    }
+    #nav-toggle:checked ~ nav.links{ max-height:260px; }
+    .burger{
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+      width:26px;
+      cursor:pointer;
+    }
+    .burger span{ height:2px; background:var(--iron); display:block; }
+    .nav-cta .btn-ghost{ display:none; }
+  }
+
+  /* ---------- page hero ---------- */
+  .page-hero{
+    position:relative;
+    overflow:hidden;
+    padding-block:88px 64px;
+    border-bottom:1px solid var(--ground-line);
+    background-image:
+      repeating-linear-gradient(135deg, rgba(233,230,224,0.035) 0px, rgba(233,230,224,0.035) 1px, transparent 1px, transparent 7px);
+  }
+  .page-hero::before, .page-hero::after{
+    content:"";
+    position:absolute;
+    width:480px; height:480px;
+    border-radius:50%;
+    filter:blur(90px);
+    pointer-events:none;
+    opacity:var(--glow-opacity);
+    animation:glow 7s ease-in-out infinite alternate;
+  }
+  .page-hero::before{
+    background:var(--ember-soft);
+    top:-220px; left:-160px;
+  }
+  .page-hero::after{
+    background:var(--temper-soft);
+    bottom:-260px; right:-180px;
+    animation-delay:1.5s;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .page-hero::before, .page-hero::after{ animation:none; }
+  }
+  @keyframes glow{
+    from{ opacity:calc(var(--glow-opacity) * 0.55); transform:scale(1); }
+    to{ opacity:calc(var(--glow-opacity) * 0.95); transform:scale(1.08); }
+  }
+  .page-hero-inner{ position:relative; z-index:1; max-width:700px; }
+  .page-hero h1{
+    font-size:clamp(2.1rem, 4.6vw, 3.4rem);
+    line-height:1.0;
+    margin-bottom:18px;
+  }
+  .page-hero h1 em{ font-style:normal; color:var(--ember); }
+  .page-hero p.lede{
+    font-size:1.05rem;
+    max-width:520px;
+  }
+
+  /* ---------- contact ---------- */
+  section{ padding-block:80px; }
+  .contact-section{ padding-block:80px; border-bottom:1px solid var(--ground-line); }
+  .contact-inner{
+    background:var(--ground-raised);
+    border:1px solid var(--ground-line);
+    padding:56px 48px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:32px;
+    flex-wrap:wrap;
+  }
+  .contact-inner h2{ font-size:clamp(1.6rem,3.2vw,2.3rem); margin-bottom:10px; }
+  .contact-inner p{ max-width:420px; }
+  .contact-ctas{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+  .contact-email{
+    font-family:var(--font-mono);
+    font-size:0.82rem;
+    color:var(--steel);
+  }
+  .contact-email a{
+    color:var(--iron);
+    text-decoration:underline;
+    text-decoration-color:var(--ground-line);
+    text-underline-offset:3px;
+  }
+  .contact-email a:hover{ text-decoration-color:var(--steel-dim); }
+
+  /* ---------- brief checklist ---------- */
+  .brief-section{ border-bottom:1px solid var(--ground-line); }
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-head h2{ font-size:clamp(1.7rem, 3.4vw, 2.5rem); margin-bottom:16px; }
+  .brief-list{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--ground-line);
+    border:1px solid var(--ground-line);
+  }
+  .brief-item{
+    background:var(--ground);
+    padding:30px 26px 34px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .brief-index{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    color:var(--temper);
+    letter-spacing:0.04em;
+  }
+  .brief-item h3{ font-size:1.2rem; letter-spacing:0.02em; }
+  .brief-item p{ font-size:0.92rem; }
+  @media (max-width:800px){
+    .brief-list{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- direct line ---------- */
+  .direct-section{ border-bottom:none; }
+  .direct-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .direct-card{
+    border:1px solid var(--ground-line);
+    background:var(--ground-raised);
+    padding:26px 28px;
+  }
+  .direct-card .eyebrow{ margin-bottom:12px; }
+  .direct-card p{ font-size:0.92rem; }
+  .direct-card .value{
+    font-family:var(--font-mono);
+    color:var(--iron);
+    font-size:0.95rem;
+    margin-top:10px;
+    display:block;
+  }
+  @media (max-width:700px){
+    .direct-grid{ grid-template-columns:1fr; }
+  }
+
+  footer{ padding:32px 0 48px; }
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.04em;
+    color:var(--steel-dim);
+    text-transform:uppercase;
+  }
+</style>
+
+<meta name="description" content="Get in touch with Forge. Send a line about your site, your deadline, and what it needs to do — we'll reply with next steps, not a form to fill out.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://whynotforge.com/contact/">
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Forge">
+<meta property="og:title" content="Contact — Forge">
+<meta property="og:description" content="Get in touch with Forge. Send a line about your site, your deadline, and what it needs to do — we'll reply with next steps, not a form to fill out.">
+<meta property="og:url" content="https://whynotforge.com/contact/">
+<meta property="og:image" content="https://whynotforge.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Forge — web development studio">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact — Forge">
+<meta name="twitter:description" content="Get in touch with Forge. Send a line about your site, your deadline, and what it needs to do — we'll reply with next steps, not a form to fill out.">
+<meta name="twitter:image" content="https://whynotforge.com/og-image.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact — Forge",
+  "url": "https://whynotforge.com/contact/",
+  "about": {
+    "@type": "Organization",
+    "name": "Forge",
+    "url": "https://whynotforge.com/",
+    "email": "harshchauhan@whynotforge.com"
+  }
+}
+</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <a class="mark" href="/"><img src="/logo.png" alt="Forge logo" width="36" height="36">
+      <span>FORGE</span>
+    </a>
+    <input type="checkbox" id="nav-toggle">
+    <label class="burger" for="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </label>
+    <nav class="links">
+      <a href="/#process">Process</a>
+      <a href="/#capabilities">Capabilities</a>
+      <a href="/#founders">Founders</a>
+      <a href="/contact/" aria-current="page">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme" title="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+      <a class="btn btn-ghost" href="mailto:harshchauhan@whynotforge.com?subject=New%20project%20enquiry%20-%20Forge">Email us</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="page-hero">
+    <div class="wrap page-hero-inner">
+      <p class="eyebrow">Get in touch</p>
+      <h1>Tell us what<br>needs <em>forging</em>.</h1>
+      <p class="lede">One email is all it takes to start. Send a line about your site, your deadline, and what it needs to do — we'll reply with next steps, not a form to fill out.</p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="wrap">
+      <div class="contact-inner">
+        <div>
+          <p class="eyebrow" style="margin-bottom:10px;">Start a project</p>
+          <h2>Ready when you are.</h2>
+          <p>Write in directly — a real person reads and replies to every email, usually within a day.</p>
+        </div>
+        <div class="contact-ctas">
+          <a class="btn btn-primary" href="mailto:harshchauhan@whynotforge.com?subject=New%20project%20enquiry%20-%20Forge">Email us</a>
+          <span class="contact-email">or write to <a href="mailto:harshchauhan@whynotforge.com?subject=New%20project%20enquiry%20-%20Forge">harshchauhan@whynotforge.com</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="brief-section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Before you write in</p>
+        <h2>Three things that help us reply faster.</h2>
+        <p>Skip the formal brief — a few lines covering this is plenty to get a real answer back, not a generic one.</p>
+      </div>
+      <div class="brief-list">
+        <div class="brief-item">
+          <span class="brief-index">01</span>
+          <h3>What it is</h3>
+          <p>Marketing site, store, web app, landing page, or a redesign of something that already exists.</p>
+        </div>
+        <div class="brief-item">
+          <span class="brief-index">02</span>
+          <h3>When it's due</h3>
+          <p>A launch date, an event, or just "as soon as it can be done properly" — either is fine, we just need to know.</p>
+        </div>
+        <div class="brief-item">
+          <span class="brief-index">03</span>
+          <h3>What it needs to do</h3>
+          <p>The job the site has to perform for you — get quotes, sell product, book calls, look credible. That's what we scope around.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="direct-section">
+    <div class="wrap">
+      <div class="direct-grid">
+        <div class="direct-card">
+          <p class="eyebrow" style="margin-bottom:0;">Response time</p>
+          <p>We reply to every enquiry ourselves, usually within one business day.
+            <span class="value">No account managers, no hand-offs.</span>
+          </p>
+        </div>
+        <div class="direct-card">
+          <p class="eyebrow" style="margin-bottom:0;">Where we're based</p>
+          <p>Forge is run by two founders working with clients wherever they are.
+            <span class="value">Remote-first, real-time when it counts.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>Forge</span>
+    <span>Founded by Eshu Koli &amp; Harsh Chauhan</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var btn = document.getElementById('theme-toggle');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      var next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      try{ localStorage.setItem('forge-theme', next); }catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>
