@@ -511,6 +511,71 @@ padding-bottom:44px;
   }
   .contact-email a:hover{ text-decoration-color:var(--steel-dim); }
 
+  .lead-form{
+    background:var(--ground-raised);
+    border:1px solid var(--ground-line);
+    padding:40px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+  .hp-field{ position:absolute; left:-9999px; width:1px; height:1px; opacity:0; }
+  .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .form-field{ display:flex; flex-direction:column; gap:8px; }
+  .form-field label{
+    font-family:var(--font-mono);
+    font-size:0.74rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--steel);
+  }
+  .form-field .optional{ text-transform:none; letter-spacing:0; color:var(--steel-dim); }
+  .form-field input,
+  .form-field select,
+  .form-field textarea{
+    font-family:var(--font-body);
+    font-size:0.95rem;
+    color:var(--iron);
+    background:var(--ground);
+    border:1px solid var(--ground-line);
+    border-radius:2px;
+    padding:12px 14px;
+    width:100%;
+  }
+  .form-field textarea{ resize:vertical; min-height:100px; }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus{
+    outline:2px solid var(--temper);
+    outline-offset:1px;
+    border-color:var(--temper);
+  }
+  .form-actions{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .form-actions .btn{ border:none; cursor:pointer; font:inherit; font-family:var(--font-mono); }
+  .form-actions .btn:disabled{ opacity:0.6; cursor:default; transform:none; }
+  .form-status{
+    font-family:var(--font-mono);
+    font-size:0.8rem;
+    color:var(--steel);
+  }
+  .form-status.form-status-err{ color:#c1584a; }
+  .form-success{
+    background:var(--ground-raised);
+    border:1px solid var(--ground-line);
+    padding:56px 48px;
+    text-align:left;
+  }
+  .form-success h2{ margin-bottom:10px; }
+  .form-success p{ max-width:480px; }
+  @media (max-width:700px){
+    .form-row{ grid-template-columns:1fr; }
+    .lead-form{ padding:28px 24px; }
+  }
+
   footer{
     padding:32px 0 48px;
   }
@@ -920,16 +985,79 @@ padding-bottom:44px;
 
 <section id="contact" class="contact-section">
     <div class="wrap">
-      <div class="contact-inner">
-        <div>
-          <p class="eyebrow" style="margin-bottom:10px;">Start a project</p>
-          <h2>Tell us what needs building.</h2>
-          <p>Send a line about the site, the deadline, and what it needs to do. We'll reply with next steps, not a form to fill out.</p>
+      <div class="section-head">
+        <p class="eyebrow">Start a project</p>
+        <h2>Tell us what needs building.</h2>
+        <p>Every project is welcome here, whatever the size or budget. Fill this in and we'll reply with next steps &mdash; no screening step, no "not a fit" reply.</p>
+      </div>
+      <form class="lead-form" id="lead-form" action="https://formsubmit.co/ajax/harshchauhan@whynotforge.com" method="POST">
+        <input type="hidden" name="_subject" value="New project enquiry - Forge">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-name">Name</label>
+            <input type="text" id="f-name" name="Name" required>
+          </div>
+          <div class="form-field">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" name="Email" required>
+          </div>
         </div>
-        <div class="contact-ctas">
-          <a class="btn btn-primary" href="mailto:harshchauhan@whynotforge.com?subject=New%20project%20enquiry%20-%20Forge">Email us</a>
-          <span class="contact-email">or write to <a href="mailto:harshchauhan@whynotforge.com?subject=New%20project%20enquiry%20-%20Forge">harshchauhan@whynotforge.com</a></span>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-company">Company <span class="optional">(optional)</span></label>
+            <input type="text" id="f-company" name="Company">
+          </div>
+          <div class="form-field">
+            <label for="f-type">What do you need built?</label>
+            <select id="f-type" name="Project type">
+              <option>Marketing or business site</option>
+              <option>Online store</option>
+              <option>Web app or tool</option>
+              <option>Landing page or campaign</option>
+              <option>Redesign or migration</option>
+              <option>Care &amp; maintenance</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
         </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="f-budget">Budget range <span class="optional">(optional)</span></label>
+            <select id="f-budget" name="Budget">
+              <option value="Prefer not to say / not sure yet">Prefer not to say / not sure yet</option>
+              <option>Under &#8377;25,000</option>
+              <option>&#8377;25,000&ndash;75,000</option>
+              <option>&#8377;75,000&ndash;2,00,000</option>
+              <option>&#8377;2,00,000+</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="f-timeline">Timeline <span class="optional">(optional)</span></label>
+            <select id="f-timeline" name="Timeline">
+              <option value="No fixed date">No fixed date</option>
+              <option>ASAP</option>
+              <option>Within a month</option>
+              <option>1&ndash;3 months</option>
+              <option>Just exploring</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="f-details">Tell us about it</label>
+          <textarea id="f-details" name="Details" rows="4" required placeholder="A line about the site, the deadline, and what it needs to do."></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="f-submit">Send it</button>
+          <span class="form-status" id="f-status" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+      <div class="form-success" id="form-success" hidden>
+        <p class="eyebrow" style="margin-bottom:10px;">Got it</p>
+        <h2>Thanks &mdash; we'll reply within a day.</h2>
+        <p>No auto-screening, no "not a fit" reply. A real person on the team reads every message.</p>
       </div>
     </div>
   </section>
@@ -951,6 +1079,36 @@ padding-bottom:44px;
       var next = current === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', next);
       try{ localStorage.setItem('forge-theme', next); }catch(e){}
+    });
+  })();
+</script>
+<script>
+  (function(){
+    var form = document.getElementById('lead-form');
+    if(!form) return;
+    var status = document.getElementById('f-status');
+    var submitBtn = document.getElementById('f-submit');
+    var successBlock = document.getElementById('form-success');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      submitBtn.disabled = true;
+      status.textContent = 'Sending…';
+      status.className = 'form-status';
+      var data = {};
+      new FormData(form).forEach(function(value, key){ data[key] = value; });
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function(res){
+        if(!res.ok) throw new Error('Request failed');
+        form.hidden = true;
+        successBlock.hidden = false;
+      }).catch(function(){
+        status.textContent = "Something went wrong — email us directly at harshchauhan@whynotforge.com instead.";
+        status.className = 'form-status form-status-err';
+        submitBtn.disabled = false;
+      });
     });
   })();
 </script>
