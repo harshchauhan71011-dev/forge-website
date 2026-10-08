@@ -6,7 +6,7 @@
 <meta name="google-site-verification" content="6EsKU4PUxrWpJfWRQf4_Vej8b45iygX726xcx9BYEWI" />
 <meta name="theme-color" content="#14171c" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f5f3ee" media="(prefers-color-scheme: light)">
-<title>Forge — Web Development Studio for Startups &amp; Businesses</title>
+<title>Forge — Web Development &amp; AI Dataset Sourcing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -444,6 +444,13 @@ padding-bottom:44px;
   @media (max-width:900px){ .cap-grid{ grid-template-columns:1fr 1fr; } }
   @media (max-width:560px){ .cap-grid{ grid-template-columns:1fr; } }
 
+  .data-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .data-grid .cap-item{ gap:18px; background:var(--ground-raised); }
+  .data-grid .btn{ align-self:flex-start; margin-top:auto; }
+  .data-note{ margin-top:22px; font-size:0.88rem; }
+  @media (max-width:700px){ .data-grid{ grid-template-columns:1fr; } }
+  [hidden]{ display:none !important; }
+
   /* ---------- founders ---------- */
   .founder-grid{
     display:grid;
@@ -641,7 +648,7 @@ padding-bottom:44px;
 }
 </style>
 
-<meta name="description" content="A two-founder web development studio building marketing sites, online stores, web apps, and landing pages — precision-built and fast to launch.">
+<meta name="description" content="Forge builds websites, online stores and web apps, and helps AI teams source off-the-shelf datasets from suppliers.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://whynotforge.com/">
 
@@ -652,8 +659,8 @@ padding-bottom:44px;
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Forge">
-<meta property="og:title" content="Forge — Web Development Studio for Startups &amp; Businesses">
-<meta property="og:description" content="A two-founder web development studio building marketing sites, online stores, web apps, and landing pages — precision-built and fast to launch.">
+<meta property="og:title" content="Forge — Web Development &amp; AI Dataset Sourcing">
+<meta property="og:description" content="Forge builds websites, online stores and web apps, and helps AI teams source off-the-shelf datasets from suppliers.">
 <meta property="og:url" content="https://whynotforge.com/">
 <meta property="og:image" content="https://whynotforge.com/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -661,8 +668,8 @@ padding-bottom:44px;
 <meta property="og:image:alt" content="Forge — web development studio">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Forge — Web Development Studio for Startups &amp; Businesses">
-<meta name="twitter:description" content="A two-founder web development studio building marketing sites, online stores, web apps, and landing pages — precision-built and fast to launch.">
+<meta name="twitter:title" content="Forge — Web Development &amp; AI Dataset Sourcing">
+<meta name="twitter:description" content="Forge builds websites, online stores and web apps, and helps AI teams source off-the-shelf datasets from suppliers.">
 <meta name="twitter:image" content="https://whynotforge.com/og-image.jpg">
 
 <script type="application/ld+json">
@@ -673,7 +680,7 @@ padding-bottom:44px;
   "url": "https://whynotforge.com/",
   "logo": "https://whynotforge.com/logo.png",
   "image": "https://whynotforge.com/og-image.jpg",
-  "description": "Forge is a web development studio building marketing sites, online stores, web apps, landing pages, redesigns, and ongoing site care.",
+  "description": "Forge builds websites, online stores and web apps, and helps AI teams source off-the-shelf datasets from suppliers.",
   "email": "harshchauhan@whynotforge.com",
   "foundingDate": "2026",
   "founder": [
@@ -686,7 +693,9 @@ padding-bottom:44px;
       "name": "Harsh Chauhan"
     }
   ],
-  "sameAs": ["https://www.linkedin.com/company/forge-webdev/"],
+  "sameAs": [
+    "https://www.linkedin.com/company/forge-webdev/"
+  ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Services",
@@ -737,6 +746,14 @@ padding-bottom:44px;
           "@type": "Service",
           "name": "Care & maintenance",
           "description": "Updates, fixes, and monitoring after launch, so the site stays your problem to grow — not to babysit."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "AI dataset sourcing",
+          "description": "Helping buyers find suppliers of off-the-shelf datasets for AI training and evaluation."
         }
       }
     ]
@@ -805,7 +822,8 @@ padding-bottom:44px;
     </label>
     <nav class="links">
       <a href="#process">Process</a>
-      <a href="#capabilities">Capabilities</a>
+      <a href="#capabilities">Web development</a>
+      <a href="#ai-data">AI data sourcing</a>
       <a href="#founders">Founders</a>
       <a href="/contact/">Contact</a>
     </nav>
@@ -822,12 +840,12 @@ padding-bottom:44px;
 <main id="top">
   <section class="hero" style="border-bottom:1px solid var(--ground-line);">
     <div class="wrap hero-inner">
-      <p class="eyebrow">Web development studio</p>
+      <p class="eyebrow">Web development &amp; AI dataset sourcing</p>
       <h1>We forge websites<br>the way a smith<br>forges <em>steel</em>.</h1>
-      <p class="lede">Heated with real strategy, hammered into shape through fast, visible iteration, tempered until it performs under load, then quenched — shipped — the moment it can hold weight.</p>
+      <p class="lede">Websites, stores and web apps, built from discovery to launch. For AI teams, we also help source off-the-shelf datasets from suppliers that match your project requirements.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="#contact">Start a project</a>
-        <a class="btn btn-ghost" href="#process">See how we build</a>
+        <a class="btn btn-ghost" href="#ai-data">Explore AI data sourcing</a>
       </div>
       <div class="spec-row">
         <span class="spec-chip">Strategy</span>
@@ -934,6 +952,31 @@ padding-bottom:44px;
     </div>
   </section>
 
+  <section id="ai-data" aria-labelledby="ai-data-heading">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">AI dataset sourcing</p>
+        <h2 id="ai-data-heading">Find data that fits your AI project.</h2>
+        <p>We help AI teams find suppliers of off-the-shelf (OTS) datasets for training and evaluation. Tell us what you need, and we help compare potential sources and coordinate the next steps.</p>
+      </div>
+      <div class="cap-grid data-grid">
+        <div class="cap-item">
+          <span class="cap-index">For buyers</span>
+          <h3>Share your dataset requirements</h3>
+          <p>Start with the data type, language, domain, volume and intended use. We help identify potential suppliers and coordinate samples, pricing and delivery requirements.</p>
+          <a class="btn btn-primary" href="/?enquiry=dataset#contact">Source a dataset</a>
+        </div>
+        <div class="cap-item">
+          <span class="cap-index">For suppliers</span>
+          <h3>Introduce your available datasets</h3>
+          <p>Share your catalogue, coverage, sample availability and licensing terms. We are building supplier relationships around buyer requirements.</p>
+          <a class="btn btn-ghost" href="/?enquiry=supplier#contact">Become a data supplier</a>
+        </div>
+      </div>
+      <p class="data-note">Dataset availability, sample acceptance, permitted use and delivery terms are confirmed for each project.</p>
+    </div>
+  </section>
+
   <section id="founders">
     <div class="wrap">
       <div class="section-head">
@@ -996,8 +1039,8 @@ padding-bottom:44px;
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Start a project</p>
-        <h2>Tell us what needs building.</h2>
-        <p>Every project is welcome here, whatever the size or budget. Fill this in and we'll reply with next steps &mdash; no screening step, no "not a fit" reply.</p>
+        <h2>Tell us what you need.</h2>
+        <p>Planning a website, sourcing an AI dataset or introducing your data catalogue? Send the details and we'll reply with next steps.</p>
       </div>
       <form class="lead-form" id="lead-form" action="https://formsubmit.co/ajax/harshchauhan@whynotforge.com" method="POST">
         <input type="hidden" name="_subject" value="New project enquiry - Forge">
@@ -1020,7 +1063,7 @@ padding-bottom:44px;
             <input type="text" id="f-company" name="Company">
           </div>
           <div class="form-field">
-            <label for="f-type">What do you need built?</label>
+            <label for="f-type">What can we help with?</label>
             <select id="f-type" name="Project type">
               <option>Marketing or business site</option>
               <option>Online store</option>
@@ -1028,13 +1071,15 @@ padding-bottom:44px;
               <option>Landing page or campaign</option>
               <option>Redesign or migration</option>
               <option>Care &amp; maintenance</option>
+              <option value="AI dataset sourcing">AI dataset sourcing</option>
+              <option value="Dataset supplier enquiry">Dataset supplier enquiry</option>
               <option>Not sure yet</option>
             </select>
           </div>
         </div>
         <div class="form-row">
-          <div class="form-field">
-            <label for="f-budget">Which package? <span class="optional">(optional)</span></label>
+          <div class="form-field" id="package-field">
+            <label for="f-budget">Website package <span class="optional">(optional)</span></label>
             <select id="f-budget" name="Package interest">
               <option value="Not sure yet / open to a recommendation">Not sure yet / open to a recommendation</option>
               <option>01 · Launch — &#8377;12,000</option>
@@ -1056,6 +1101,7 @@ padding-bottom:44px;
         </div>
         <div class="form-field">
           <label for="f-details">Tell us about it</label>
+          <p id="data-brief-hint" class="data-note" hidden></p>
           <textarea id="f-details" name="Details" rows="4" required placeholder="A line about the site, the deadline, and what it needs to do."></textarea>
         </div>
         <div class="form-actions">
@@ -1120,6 +1166,33 @@ padding-bottom:44px;
         submitBtn.disabled = false;
       });
     });
+  })();
+</script>
+<script>
+  (function(){
+    var type = document.getElementById('f-type');
+    var details = document.getElementById('f-details');
+    var packageField = document.getElementById('package-field');
+    var budget = document.getElementById('f-budget');
+    var hint = document.getElementById('data-brief-hint');
+    function updateEnquiry(){
+      var supplier = type.value === 'Dataset supplier enquiry';
+      var dataset = supplier || type.value === 'AI dataset sourcing';
+      packageField.hidden = dataset;
+      budget.disabled = dataset;
+      hint.hidden = !dataset;
+      hint.textContent = supplier
+        ? 'Include data type, languages, domains, available volume, sample availability and licensing terms.'
+        : 'Include data type, language, domain, volume, intended use, annotation needs and deadline.';
+      details.placeholder = dataset ? 'Share the dataset details and any requirements.' : 'A line about the site, the deadline, and what it needs to do.';
+      if(dataset) details.setAttribute('aria-describedby', 'data-brief-hint');
+      else details.removeAttribute('aria-describedby');
+    }
+    var enquiry = new URLSearchParams(window.location.search).get('enquiry');
+    if(enquiry === 'dataset') type.value = 'AI dataset sourcing';
+    if(enquiry === 'supplier') type.value = 'Dataset supplier enquiry';
+    type.addEventListener('change', updateEnquiry);
+    updateEnquiry();
   })();
 </script>
 </body>
